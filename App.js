@@ -1,38 +1,32 @@
-import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import About from './components/About';
+import Home from './components/Home';
+import Toast from 'react-native-toast-message';
 
-import {StyleSheet, Text, View} from 'react-native';
-
-
+  const Stack = createStackNavigator();
 
 
 export default function App() {
-  const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#61dafb',
-    color: '#20232a',
-    textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
- 
-});
+
   return (
-    <View
-      style={styles.container}
-     
-    >
-      <Text style={styles.title}>현지의 어플에 온걸 환영합니다</Text>
-      </View>
+    <NavigationContainer>
+      
+		<Stack.Navigator initialRouteName="LoginView">
+        	<Stack.Screen
+                    		name="LoginView"
+                    		component={Home}
+                    		options={{headerShown: false}}
+             		/>	
+                	<Stack.Screen
+                    		name="RegisterView"
+                    		component={About}
+                    		options={{headerShown: false}}
+             		/>
+       		</Stack.Navigator>
+           <Toast ref={(ref) => Toast.setRef(ref)} />
+	</NavigationContainer>
+   
   );
 }
+
