@@ -6,11 +6,11 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppBar from './AppBar';
 import Toast from 'react-native-toast-message';
+import Task from './Task';
 
 
-const Home = () => {
-  // 체크박스
-  const [isSelected, setSelection] = useState(false);
+const Home = ({navigation}) => {
+ 
     const showToast = () => {
         Toast.show({
           type: 'success',
@@ -39,6 +39,8 @@ marginHorizontal:12,
     backgroundColor: '#F5FCFF',
   },
   title: {
+    flexDirection:'row' ,
+    justifyContent:'space-between',
     marginTop:50,
   borderRadius:120,
     backgroundColor: '#AE94F7',
@@ -67,19 +69,7 @@ border:2,
 borderColor:"#000",
 backgroundColor:'#F5FCFF',
   },
-  checkboxAndButton:{
-    flexDirection:"row",
-    justifyContent:"space-between",
-    marginTop:40,
-    
-  },
-  checkbox:{
-    flexDirection:"row",  
-  },
-  DeleteButton:{
-    flexDirection:"row",
-    gap:11, 
-  },
+
 });
 
 
@@ -89,36 +79,31 @@ backgroundColor:'#F5FCFF',
     <View style={styles.allContainer}>
         <AppBar/>
     <View
-      style={styles.container}
+     style={styles.title}
     > 
-    <StatusBar style="light-content" backgroundColor = "black"/>
-      <Text style={styles.title}> <Icon name="calendar-check"  size={20}></Icon> Todo List</Text>
+      <View>
+        <View>
+        </View>
+       <Icon name="calendar-check"  size={20}></Icon><Text>Todo List</Text>
+     </View> 
+     <View>
+      <Button title='로그인' onPress={()=> navigation.navigate('login')}></Button>
+      </View>
       </View>
        <View style={styles.inputAndButton}> 
-        <View>
             <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
       />
-       </View>  
-  <View>
-    <TouchableOpacity style={styles.button} onPress={showToast}><Text>등록하기</Text></TouchableOpacity>
- 
-    </View>
+    <TouchableOpacity style={styles.button} onPress={showToast}>
+      <Text>등록하기</Text>
+      </TouchableOpacity>
       </View>
-      <View style={styles.checkboxAndButton}>
-      <View style={styles.checkbox}>
-        <BouncyCheckbox
-          value={isSelected}
-          onValueChange={setSelection}
-          style={styles.checkbox}
-        /><Text>할일 1</Text>
-        </View>
-        <View  style={styles.DeleteButton}>
-          <Icon name='delete-forever' size={20}></Icon>
-      <Icon name='pencil' size={20}></Icon></View> 
-      </View>
+   <Task/>
+   <Task/>
+   <Task/>
+   <Task/>
     </View>
     </ScrollView>
   )

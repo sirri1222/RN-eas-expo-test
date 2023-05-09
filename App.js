@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import About from './components/About';
 import Home from './components/Home';
 import Toast from 'react-native-toast-message';
+import Login from './components/Login';
 
   const Stack = createStackNavigator();
 
@@ -10,17 +11,16 @@ import Toast from 'react-native-toast-message';
 export default function App() {
 
   return (
-    <NavigationContainer>
-      
+    <NavigationContainer>     
 		<Stack.Navigator initialRouteName="LoginView">
         	<Stack.Screen
-                    		name="LoginView"
+                    		name="todolist"
                     		component={Home}
                     		options={{headerShown: false}}
              		/>	
                 	<Stack.Screen
-                    		name="RegisterView"
-                    		component={About}
+                    		name="login"
+                    		component={Login}
                     		options={{headerShown: false}}
              		/>
        		</Stack.Navigator>
