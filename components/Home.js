@@ -1,13 +1,16 @@
-import React, { useCallback, useEffect, useRef } from 'react'
-import {Button, ScrollView, StyleSheet, Text,ToastAndroid, TextInput, TouchableOpacity, View} from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import {Button, ScrollView, StyleSheet, Text,ToastAndroid, TextInput, TouchableOpacity, View, CheckBox} from 'react-native';
 import { StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppBar from './AppBar';
 import Toast from 'react-native-toast-message';
 
 
 const Home = () => {
+  // 체크박스
+  const [isSelected, setSelection] = useState(false);
     const showToast = () => {
         Toast.show({
           type: 'success',
@@ -64,7 +67,19 @@ border:2,
 borderColor:"#000",
 backgroundColor:'#F5FCFF',
   },
- 
+  checkboxAndButton:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    marginTop:40,
+    
+  },
+  checkbox:{
+    flexDirection:"row",  
+  },
+  DeleteButton:{
+    flexDirection:"row",
+    gap:11, 
+  },
 });
 
 
@@ -77,7 +92,7 @@ backgroundColor:'#F5FCFF',
       style={styles.container}
     > 
     <StatusBar style="light-content" backgroundColor = "black"/>
-      <Text style={styles.title}> <Icon name="calendar-check-o"  size={20}></Icon> Todo List</Text>
+      <Text style={styles.title}> <Icon name="calendar-check"  size={20}></Icon> Todo List</Text>
       </View>
        <View style={styles.inputAndButton}> 
         <View>
@@ -91,6 +106,18 @@ backgroundColor:'#F5FCFF',
     <TouchableOpacity style={styles.button} onPress={showToast}><Text>등록하기</Text></TouchableOpacity>
  
     </View>
+      </View>
+      <View style={styles.checkboxAndButton}>
+      <View style={styles.checkbox}>
+        <BouncyCheckbox
+          value={isSelected}
+          onValueChange={setSelection}
+          style={styles.checkbox}
+        /><Text>할일 1</Text>
+        </View>
+        <View  style={styles.DeleteButton}>
+          <Icon name='delete-forever' size={20}></Icon>
+      <Icon name='pencil' size={20}></Icon></View> 
       </View>
     </View>
     </ScrollView>
