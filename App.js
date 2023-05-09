@@ -14,7 +14,7 @@ export default function App() {
     <NavigationContainer>     
 		<Stack.Navigator initialRouteName="LoginView">
         	<Stack.Screen
-                    		name="todolist"
+                    		name="home"
                     		component={Home}
                     		options={{headerShown: false}}
              		/>	

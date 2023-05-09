@@ -26,12 +26,12 @@ const Home = ({navigation}) => {
         });
       };
     
-    const [text, onChangeText] = React.useState('+ 할 일을 입력해 주세요.');
+    const [text, onChangeText] = useState('');
  
      
     const styles = StyleSheet.create({
         allContainer:{
-marginHorizontal:12,
+marginHorizontal:25,
         },
   container: {
     flex: 1,
@@ -40,7 +40,7 @@ marginHorizontal:12,
   },
   title: {
     flexDirection:'row' ,
-    justifyContent:'space-between',
+    justifyContent:'center',
     marginTop:50,
   borderRadius:120,
     backgroundColor: '#AE94F7',
@@ -58,7 +58,7 @@ marginTop: 42,
   },
   input: {
     height: 40,
-    borderWidth: 1,
+   borderBottomWidth: 2,
     paddingVertical: 10,
     paddingHorizontal:15,
     color: '#000',
@@ -76,25 +76,24 @@ backgroundColor:'#F5FCFF',
 
   return ( 
    <ScrollView>
-    <View style={styles.allContainer}>
-        <AppBar/>
-    <View
+      <View
      style={styles.title}
-    > 
+    >  
+        <Icon name="calendar-check"  size={20}></Icon><Text>Todo List</Text>
+      </View>
       <View>
-        <View>
-        </View>
-       <Icon name="calendar-check"  size={20}></Icon><Text>Todo List</Text>
-     </View> 
-     <View>
       <Button title='로그인' onPress={()=> navigation.navigate('login')}></Button>
       </View>
-      </View>
+    <View style={styles.allContainer}>
+        <AppBar/>
+  
        <View style={styles.inputAndButton}> 
             <TextInput
         style={styles.input}
+        placeholder='+ 할 일을 입력해 주세요.'
         onChangeText={onChangeText}
         value={text}
+        
       />
     <TouchableOpacity style={styles.button} onPress={showToast}>
       <Text>등록하기</Text>
